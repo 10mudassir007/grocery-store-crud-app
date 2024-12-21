@@ -1,5 +1,7 @@
+import pandas as pd
 import streamlit as st 
 import sqlite3
+
 
 if 'op' not in st.session_state:
     st.session_state.op = None
@@ -7,15 +9,15 @@ if 'op' not in st.session_state:
 
 c1,c2,c3 = st.columns(3)
 with c1:
-    if st.button("Add new customer"):
+    if st.button("View all customers"):
         st.session_state.op = 'customer'
         st.rerun()
 with c2:
-    if st.button("Add new product"):
+    if st.button("View all product"):
         st.session_state.op = 'product'
         st.rerun()
 with c3:
-    if st.button("Add new order"):
+    if st.button("View all orders"):
         st.session_state.op = 'order'
         st.rerun()
 
@@ -23,5 +25,19 @@ conn = sqlite3.connect('grocery_store1.db')
 cursor = conn.cursor()
 
 if st.session_state.op == 'customer':
+    query = """SELECT * FROM customers"""
+    df = pd.read_sql_query(query, conn)
+    st.subheader("Customers")
+    st.write(df)
+
 elif st.session_state.op == 'product':
+    query = """SELECT * FROM products"""
+    df = pd.read_sql_query(query, conn)
+    st.subheader("Products")
+    st.write(df)
+
 elif st.session_state.op == 'order':
+    query = """SELECT * FROM products"""
+    df = pd.read_sql_query(query, conn)
+    st.subheader("Orders")
+    st.write(df)
