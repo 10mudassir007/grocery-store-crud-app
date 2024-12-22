@@ -28,16 +28,19 @@ if st.session_state.op == 'customer':
     query = """SELECT * FROM customers"""
     df = pd.read_sql_query(query, conn)
     st.subheader("Customers")
-    st.write(df)
+    st.dataframe(df,width=1000)
 
 elif st.session_state.op == 'product':
     query = """SELECT * FROM products"""
     df = pd.read_sql_query(query, conn)
     st.subheader("Products")
-    st.write(df)
+    st.dataframe(df,width=1000)
 
 elif st.session_state.op == 'order':
-    query = """SELECT * FROM products"""
+    query = """ SELECT orders.order_id, customers.name AS customer_name, orders.order_date, 
+           orders.total_amount, orders.status
+    FROM orders
+    INNER JOIN customers ON orders.customer_id = customers.customer_id"""
     df = pd.read_sql_query(query, conn)
     st.subheader("Orders")
-    st.write(df)
+    st.dataframe(df,width=1000)

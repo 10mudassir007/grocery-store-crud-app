@@ -27,26 +27,26 @@ if not st.session_state.loggedIn:
             st.error("Incorrect Password")
 
 if st.session_state.loggedIn:
-    st.header("Logged in as Admin")
+    st.subheader("Logged in as Admin")
     st.markdown("##### Select operation from sidebar")
     create = st.Page(
         page='create.py',
-        title="Add new Data",
+        title="Add new records",
         icon=":material/account_circle:"
     )
     read = st.Page(
         page='read.py',
-        title="View Data",
+        title="View Records",
         icon=":material/account_circle:"
     )
     update = st.Page(
         page='update.py',
-        title="Update Data",
+        title="Update Records",
         icon=":material/account_circle:"
     )
     delete = st.Page(
         page='delete.py',
-        title="Delete Data",
+        title="Delete Records",
         icon=":material/account_circle:"
     )
     pg = st.navigation({"Operations":[create, read, update, delete]})
