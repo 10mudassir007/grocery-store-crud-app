@@ -23,7 +23,7 @@ with c3:
         st.session_state.success = None
         st.rerun()
 
-conn = sqlite3.connect('grocery_store1.db')
+conn = sqlite3.connect('grocery_store.db')
 cursor = conn.cursor()
 
 if st.session_state.op == 'customer':
